@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
+options: "91142353809080b4ed547234c8a6177e97ebcb365a1696f2f2281c324aa2c3f2"
+build_start_time: [1685965346, 749435000]
+build_end_time: [1685965346, 785962000]
+inputs:
+  "/Users/rishabh/Documents/farmer/farmer_app/macos/Flutter/GeneratedPluginRegistrant.swift": !private [1685965333, 616243720]
+  "/Users/rishabh/Documents/farmer/farmer_app/macos/Runner/AppDelegate.swift": !private [1682601942, 3899747]
+  "/Users/rishabh/Documents/farmer/farmer_app/macos/Runner/MainFlutterWindow.swift": !private [1685684921, 601966107]
