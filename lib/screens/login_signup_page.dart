@@ -1,3 +1,5 @@
+import 'package:farmer_app/auth_methods/auth_methods.dart';
+import 'package:farmer_app/responsive/utils.dart';
 import 'package:farmer_app/screens/homePageBank.dart';
 import 'package:farmer_app/screens/home_page.dart';
 import 'package:farmer_app/screens/signup_page.dart';
@@ -13,13 +15,55 @@ class _LoginPageState extends State<LoginPage> {
   bool _obscurePassword = true;
   String _signInAs = 'User';
 
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  void loginUser(String accountType) async {
+    String email = emailController.text;
+    String password = passwordController.text;
+
+    if (email.isNotEmpty && password.isNotEmpty) {
+      String res = await AuthMethods().loginUser(
+        email: email,
+        password: password,
+      );
+
+      if (res == "Successfully Logged In!") {
+        showSnackBar(res, context);
+
+        if (accountType == 'user') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+          );
+        } else if (accountType == 'bank') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomePageBank()),
+          );
+        }
+      } else {
+        showSnackBar(res, context);
+      }
+    } else {
+      showSnackBar("Please enter email and password", context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/background_image.jpg'),
+            image: AssetImage('lib/background_image.jpg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -91,6 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                       isEmailFocused = true;
                     });
                   },
+                  controller: emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
                     filled: true,
@@ -109,6 +154,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 20.0),
               TextFormField(
                 obscureText: _obscurePassword,
+                controller: passwordController,
                 decoration: InputDecoration(
                   labelText: 'Password',
                   filled: true,
@@ -135,15 +181,9 @@ class _LoginPageState extends State<LoginPage> {
               ElevatedButton(
                 onPressed: () {
                   if (_signInAs == 'User') {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
-                    );
+                    loginUser('user');
                   } else if (_signInAs == 'Bank') {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomePageBank()),
-                    );
+                    loginUser('bank');
                   }
                 },
                 style: ElevatedButton.styleFrom(

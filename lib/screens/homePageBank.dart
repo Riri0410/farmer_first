@@ -214,13 +214,16 @@ class SideMenu extends StatelessWidget {
 */
 
 // custom button starts from here
+import 'package:farmer_app/screens/CibilParametersEditor.dart';
 import 'package:farmer_app/screens/CibilScore.dart';
 import 'package:farmer_app/screens/bankerProfile.dart';
 import 'package:farmer_app/screens/login_signup_page.dart';
 import 'package:farmer_app/screens/profile_page.dart';
+import 'package:farmer_app/screens/search.dart';
 import 'package:farmer_app/screens/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:farmer_app/screens/profile_page.dart';
 
 class HomePageBank extends StatelessWidget {
   const HomePageBank({Key? key}) : super(key: key);
@@ -235,8 +238,8 @@ class HomePageBank extends StatelessWidget {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: const Text('John Doe'),
-              accountEmail: const Text('johndoe@example.com'),
+              accountName: const Text('Bank Login'),
+              accountEmail: const Text('admin@app.com'),
               currentAccountPicture: CircleAvatar(
                 child: const Icon(Icons.person),
               ),
@@ -272,13 +275,13 @@ class HomePageBank extends StatelessWidget {
                 );
               },
             ),
-            ListTile(
+            /*ListTile(
               leading: const Icon(Icons.swap_horiz),
               title: const Text('Transactions'),
               onTap: () {
                 // Handle transactions button tap
               },
-            ),
+            ),*/
             ListTile(
               leading: const Icon(Icons.logout),
               title: const Text('Log Out'),
@@ -321,7 +324,7 @@ class HomePageBank extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '700/1000', // Replace with the user's credit score
+                          'Welcome!', // Replace with the user's credit score
                           style: TextStyle(
                             fontSize: 24.0,
                             fontWeight: FontWeight.bold,
@@ -329,7 +332,7 @@ class HomePageBank extends StatelessWidget {
                         ),
                         const SizedBox(height: 10.0),
                         const Text(
-                          'Credit Score',
+                          'Credit Score Search',
                           style: TextStyle(
                             fontSize: 16.0,
                           ),
@@ -341,7 +344,7 @@ class HomePageBank extends StatelessWidget {
               ),
               const SizedBox(height: 30.0),
               const Text(
-                'Welcome, John Doe!',
+                'Choose Option',
                 style: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
@@ -357,19 +360,18 @@ class HomePageBank extends StatelessWidget {
                     () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => CibilCalculatorPage()),
+                        MaterialPageRoute(builder: (context) => SearchPage()),
                       );
                     },
                   ),
                   const SizedBox(width: 20.0),
-                  _buildSquareButton(
+                  /* _buildSquareButton(
                     Icons.swap_horiz,
                     'Transactions',
                     () {
                       // Handle transactions button tap
                     },
-                  ),
+                  ),*/
                 ],
               ),
               const SizedBox(height: 20.0),
